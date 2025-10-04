@@ -37,7 +37,7 @@ function StreamList() {
         director: directorObj?.name || 'Unknown',
       };
     } catch (error) {
-      console.error('Error fetching movie info:', error);
+      alert('Failed to fetch movie information. Please try again later.');
       return null;
     }
   };
@@ -98,37 +98,37 @@ function StreamList() {
         <button type="submit">Add</button>
       </form>
 
-<ul className="stream-list">
-  {streams.map((stream) => (
-    <li key={stream.id}>
-      {editingId === stream.id ? (
-        <>
-          <input
-            type="text"
-            value={editText}
-            onChange={(e) => setEditText(e.target.value)}
-          />
-          <button onClick={() => {
-            handleEdit(stream.id, editText);
-            setEditingId(null);
-          }}>Save</button>
-          <button onClick={() => setEditingId(null)}>Cancel</button>
-        </>
-      ) : (
-        <>
-          <p>
-            <strong>{stream.title}</strong> — {stream.year} — {stream.director}
-          </p>
-          <button onClick={() => {
-            setEditingId(stream.id);
-            setEditText(stream.title);
-          }}>Edit</button>
-          <button onClick={() => handleDelete(stream.id)}>Delete</button>
-        </>
-      )}
-    </li>
-  ))}
-</ul>
+      <ul className="stream-list">
+        {streams.map((stream) => (
+          <li key={stream.id}>
+            {editingId === stream.id ? (
+              <>
+                <input
+                  type="text"
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                />
+                <button onClick={() => {
+                  handleEdit(stream.id, editText);
+                  setEditingId(null);
+                }}>Save</button>
+                <button onClick={() => setEditingId(null)}>Cancel</button>
+              </>
+            ) : (
+              <>
+                <p>
+                  <strong>{stream.title}</strong> — {stream.year} — {stream.director}
+                </p>
+                <button onClick={() => {
+                  setEditingId(stream.id);
+                  setEditText(stream.title);
+                }}>Edit</button>
+                <button onClick={() => handleDelete(stream.id)}>Delete</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
