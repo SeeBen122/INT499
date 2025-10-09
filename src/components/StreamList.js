@@ -1,6 +1,17 @@
+import NavBar from './NavBar';
 import React, { useState, useEffect } from 'react';
+// adding in code for Google OAuth
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import './StreamList.css';
+
+
+
+
 
 function StreamList() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const [input, setInput] = useState('');
   const [streams, setStreams] = useState(() => {
     const saved = localStorage.getItem('streamList');
@@ -81,12 +92,34 @@ function StreamList() {
 
   return (
     <div className="streamlist-container">
+      <NavBar />
       <img src="/movieheader.png" alt="Movie Header" className="logo" />
       <h2>Welcome to StreamList</h2>
       <p className="instructions">
         Type in the name of a movie you'd like to watch, then hit "Add" to save it to your list.
         Keep titles short and clear. No need for punctuation or release years.
       </p>
+      {/* Google Login Button for week 5 */}
+      {!isLoggedIn && (
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            const decoded = jwtDecode(credentialResponse.credential);
+            setUser(decoded);
+            setIsLoggedIn(true);
+            console.log("Logged in as:", decoded.name);
+          }}
+          onError={() => {
+            console.log("OAuth Error");
+          }}
+        />
+)}
+{isLoggedIn && user && (
+  <p className="welcome">Welcome, {user.name}!</p>
+)}
+
+
+
+
 
       <form onSubmit={handleSubmit}>
         <input

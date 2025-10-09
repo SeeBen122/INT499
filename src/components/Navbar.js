@@ -7,7 +7,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import MovieIcon from '@mui/icons-material/Movie';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function NavBar() {
   return (
     <nav className="navbar">
       
@@ -42,6 +42,6 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavBar;
 
 
