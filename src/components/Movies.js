@@ -1,10 +1,12 @@
 import React from 'react';
+import NavBar from './NavBar'; // optional, if you want NavBar here
 
 function Movies() {
   return (
-    <div className="page-placeholder">
-      <h2>🎥 Movies Page</h2>
-      <p>This page will be built in Week 4.</p>
+    <div className="movies-container">
+      <NavBar />
+      <h2>Movies Page</h2>
+      {/* Add your content here */}
     </div>
   );
 }

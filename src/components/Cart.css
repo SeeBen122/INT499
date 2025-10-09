@@ -7,6 +7,7 @@
 
 .item-card {
   background-color: #fff;
+  color: black;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1em;
@@ -30,9 +31,21 @@
   font-size: 1.1em;
 }
 
-.item-card p {
-  margin: 0.3em 0;
-  font-size: 0.95em;
+.item-card {
+  width: 220px; /* consistent width */
+  min-height: 120px; /* ensures uniform height */
+  background-color: #f7ac4a;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1em;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .item-card button {
@@ -47,4 +60,66 @@
 
 .item-card button:hover {
   background-color: #0056b3;
+}
+.cart-layout {
+  display: flex;
+  gap: 2em;
+  align-items: flex-start;
+}
+
+.item-list-section {
+  flex: 2;
+}
+
+.cart-summary {
+  flex: 1;
+  background-color: #222;
+  color: white;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+
+.cart-list li {
+  margin-bottom: 1em;
+  background-color: #333;
+  padding: 0.8em;
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-list input[type="number"] {
+  width: 50px;
+  padding: 0.2em;
+  font-size: 0.9em;
+  margin-left: 0.5em;
+}
+
+.cart-list button {
+  padding: 0.3em 0.6em;
+  font-size: 0.8em;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.cart-list button:hover {
+  background-color: #cc0000;
+}
+.cart-list input[type="number"] {
+  width: 50px;
+  padding: 0.2em;
+  font-size: 0.9em;
+  margin-left: 0.5em;
 }

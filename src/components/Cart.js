@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import list from '../data/data';
 import './Cart.css';
+import NavBar from './NavBar';
 
 function Cart() {
   const [cart, setCart] = useState(() => {
@@ -61,6 +62,9 @@ function Cart() {
 
   return (
     <div className="cart-container">
+  <NavBar />
+  <div className="cart-layout">
+    <div className="item-list-section">
       <h2>Available Services</h2>
       <div className="item-list">
         {list.map((item) => (
@@ -73,7 +77,9 @@ function Cart() {
           </div>
         ))}
       </div>
+    </div>
 
+    <div className="cart-summary">
       <h2>Your Cart</h2>
       {error && <p className="error-message">{error}</p>}
       <ul className="cart-list">
@@ -94,7 +100,10 @@ function Cart() {
       </ul>
       <h3>Total: ${total.toFixed(2)}</h3>
     </div>
+  </div>
+</div>
   );
 }
+
 
 export default Cart;
