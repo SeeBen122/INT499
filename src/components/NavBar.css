@@ -33,9 +33,11 @@
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
+  height: 40px;
+  margin-right: 1em;
 }
+
+
 
 .logo-img {
   height: 40px;
@@ -45,4 +47,58 @@
 .logo-img:hover {
   transform: scale(1.05);
   filter: brightness(1.2);
+}
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}
+.username {
+  font-family: Arial, sans-serif; /* clean, readable font */
+  font-size: 0.85em;              /* slightly smaller than default */
+  color: #f0f0f0;                 /* soft white for contrast */
+  margin-right: 0.5em;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  text-align: right;
+}
+
+.username-label {
+  font-family: Arial, sans-serif;
+  font-size: 0.8em;
+  color: #ccc;
+  margin: 0;
+}
+
+.username-value {
+  font-family: Arial, sans-serif;
+  font-size: 0.9em;
+  color: #f0f0f0;
+  margin: 0.2em 0;
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.4em 0.8em;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5em;
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
 }

@@ -22,6 +22,13 @@ function StreamList() {
     localStorage.setItem('streamList', JSON.stringify(streams));
   }, [streams]);
 
+  useEffect(() => {
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+    setIsLoggedIn(true);
+  }
+}, []);
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState('');
 
@@ -89,7 +96,19 @@ function StreamList() {
       )
     );
   };
+  const moveUp = (index) => {
+  if (index === 0) return;
+  const updated = [...streams];
+  [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
+  setStreams(updated);
+};
 
+const moveDown = (index) => {
+  if (index === streams.length - 1) return;
+  const updated = [...streams];
+  [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
+  setStreams(updated);
+};
   return (
     <div className="streamlist-container">
       <NavBar />
@@ -107,60 +126,67 @@ function StreamList() {
             setUser(decoded);
             setIsLoggedIn(true);
             console.log("Logged in as:", decoded.name);
+            localStorage.setItem('user', JSON.stringify(decoded));
+            setUser(decoded);
           }}
           onError={() => {
             console.log("OAuth Error");
           }}
         />
 )}
-{isLoggedIn && user && (
-  <p className="welcome">Welcome, {user.name}!</p>
-)}
 
 
 
 
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter a movie or film name..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button type="submit">Add</button>
+
+      <form onSubmit={handleSubmit} className="add-stream-form">
+        <div className="add-stream-row">
+          <input
+            type="text"
+            placeholder="Enter a movie or film name..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button type="submit">Add</button>
+        </div>
       </form>
 
+
+
       <ul className="stream-list">
-        {streams.map((stream) => (
-          <li key={stream.id}>
-            {editingId === stream.id ? (
-              <>
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-                <button onClick={() => {
-                  handleEdit(stream.id, editText);
-                  setEditingId(null);
-                }}>Save</button>
-                <button onClick={() => setEditingId(null)}>Cancel</button>
-              </>
-            ) : (
-              <>
-                <p>
-                  <strong>{stream.title}</strong> — {stream.year} — {stream.director}
-                </p>
-                <button onClick={() => {
-                  setEditingId(stream.id);
-                  setEditText(stream.title);
-                }}>Edit</button>
-                <button onClick={() => handleDelete(stream.id)}>Delete</button>
-              </>
-            )}
-          </li>
-        ))}
+        {streams.map((stream, index) => (
+  <li key={stream.id} className="stream-item">
+    <div className="stream-details">
+      <p>
+        <strong>{stream.title}</strong> — {stream.year} — {stream.director}
+      </p>
+      <div className="stream-actions">
+        <button onClick={() => moveUp(index)}>↑</button>
+        <button onClick={() => moveDown(index)}>↓</button>
+        <button onClick={() => {
+          setEditingId(stream.id);
+          setEditText(stream.title);
+        }}>Edit</button>
+        <button onClick={() => handleDelete(stream.id)}>Delete</button>
+      </div>
+    </div>
+    {editingId === stream.id && (
+      <div className="edit-row">
+        <input
+          type="text"
+          value={editText}
+          onChange={(e) => setEditText(e.target.value)}
+        />
+        <button onClick={() => {
+          handleEdit(stream.id, editText);
+          setEditingId(null);
+        }}>Save</button>
+        <button onClick={() => setEditingId(null)}>Cancel</button>
+      </div>
+    )}
+  </li>
+))}
       </ul>
     </div>
   );

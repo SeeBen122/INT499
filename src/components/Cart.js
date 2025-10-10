@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import list from '../data/data';
 import './Cart.css';
 import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
+
 
 function Cart() {
   const [cart, setCart] = useState(() => {
@@ -10,6 +12,7 @@ function Cart() {
   });
 
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   // Sync cart to localStorage whenever it changes
   useEffect(() => {
@@ -99,6 +102,15 @@ function Cart() {
         ))}
       </ul>
       <h3>Total: ${total.toFixed(2)}</h3>
+      <button className="checkout-button" onClick={() => navigate('/checkout')}>
+        Proceed to Checkout
+      </button>
+      <div className="note">
+        <p><em>Note: Only one subscription item can be added to your cart.</em></p>
+      </div>
+    </div>
+    <div className="spacer">
+    &nbsp;
     </div>
   </div>
 </div>
