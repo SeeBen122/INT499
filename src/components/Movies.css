@@ -1,0 +1,24 @@
+.movies-container {
+  max-width: 700px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #222;
+  color: #eee;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.movies-container h2 {
+  font-size: 1.8em;
+  margin-bottom: 1em;
+  color: #fff;
+}
+.movie-header {
+  width: 100%;
+  max-width: 600px; /* or 500px, depending on your layout */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto 1em; /* centers the image and adds spacing below */
+  display: block;
+}

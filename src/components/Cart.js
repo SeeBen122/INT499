@@ -64,7 +64,7 @@ function Cart() {
   };
 
   return (
-    <div className="cart-container">
+    <div className="page-container">
   <NavBar />
   <div className="cart-layout">
     <div className="item-list-section">

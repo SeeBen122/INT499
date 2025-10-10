@@ -112,8 +112,8 @@ const moveDown = (index) => {
   return (
     <div className="streamlist-container">
       <NavBar />
-      <img src="/movieheader.png" alt="Movie Header" className="logo" />
-      <h2>Welcome to StreamList</h2>
+      {/* <img src="/StreamListLogo.png" alt="StreamList Logo" className="logo" /> */}
+      <h2>Find your Movies with StreamList</h2>
       <p className="instructions">
         Type in the name of a movie you'd like to watch, then hit "Add" to save it to your list.
         Keep titles short and clear. No need for punctuation or release years.
